@@ -7,10 +7,11 @@ import RecipeDetails from "./components/RecipeDetails";
 class App extends Component {
   state = {
     recipes: recipes,
+    details_id:35386,
   };
 
   // getRecipes = async () => {
-  //   const url = `https://www.food2fork.com/api/search?key=${
+  //   const url = `https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/search?key=${
   //     process.env.REACT_APP_F2F_KEY
   //   }`;
   //   try {
@@ -33,8 +34,8 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <RecipeList recipes={this.state.recipes}/>
-        <RecipeDetails />
+        {/* <RecipeList recipes={this.state.recipes}/> */}
+        <RecipeDetails id={this.state.details_id}/>
       </Fragment>
     );
   }

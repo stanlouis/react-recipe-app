@@ -41,7 +41,7 @@ class Recipe extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Recipe <i class="fas fa-external-link-square-alt" />
+                Recipe <i className="fas fa-external-link-square-alt" />
               </a>
             </div>
           </div>
