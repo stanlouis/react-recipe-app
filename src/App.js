@@ -6,7 +6,7 @@ import { recipes } from './data/tempList';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 
-const baseUrl = `https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/search?key=${
+const baseUrl = `https://www.food2fork.com/api/search?key=${
   process.env.REACT_APP_F2F_KEY
 }`;
 
