@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-
+import { Link } from 'react-router-dom';
 class Recipe extends Component {
   render() {
     const {
@@ -33,7 +33,7 @@ class Recipe extends Component {
             </div>
             <div className="card-footer">
               <button className="btn btn-light-green text-capitalize">
-                details
+                <Link to={`/${recipe_id}`}>details</Link>
               </button>
               <a
                 href={source_url}

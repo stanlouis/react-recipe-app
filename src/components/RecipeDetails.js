@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { recipe } from '../data/tempDetails';
 
 class RecipeDetails extends Component {
@@ -7,9 +8,10 @@ class RecipeDetails extends Component {
   };
 
   async componentDidMount() {
+      const { id } = this.props.match.params;
     // const url = `https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/get?key=${
     //     process.env.REACT_APP_F2F_KEY
-    //   }&rId=${this.props.id}`
+    //   }&rId=${id}`
     // try {
     //   const data = await fetch(url);
     //   const jsonData = await data.json();
@@ -19,6 +21,7 @@ class RecipeDetails extends Component {
     // } catch (error) {
     //   console.log(error);
     // }
+    console.log(id)
   }
 
   render() {
@@ -39,7 +42,7 @@ class RecipeDetails extends Component {
                 type="button"
                 className="btn warning-color mb-5 text-capitalize"
               >
-                back to recipe list
+                <Link to='/'>back to recipe list</Link>
               </button>
               <img src={image_url} alt="recipe" className="d-block w-100" />
             </div>
