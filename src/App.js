@@ -50,7 +50,7 @@ class App extends Component {
         search: '',
       },
       () => {
-        this.getRecipes();
+        // this.getRecipes();
         console.log(this.state);
       }
     );
