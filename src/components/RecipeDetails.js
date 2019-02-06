@@ -8,7 +8,7 @@ class RecipeDetails extends Component {
   };
 
   async componentDidMount() {
-      const { id } = this.props.match.params;
+    const { id } = this.props.match.params;
     // const url = `https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/get?key=${
     //     process.env.REACT_APP_F2F_KEY
     //   }&rId=${id}`
@@ -21,7 +21,7 @@ class RecipeDetails extends Component {
     // } catch (error) {
     //   console.log(error);
     // }
-    console.log(id)
+    console.log(id);
   }
 
   render() {
@@ -38,17 +38,14 @@ class RecipeDetails extends Component {
         <div className="container my-5">
           <div className="row">
             <div className="col-10 mx-auto col-md-6 my-3">
-              <button
-                type="button"
-                className="btn warning-color mb-5 text-capitalize"
-              >
-                <Link to='/'>back to recipe list</Link>
-              </button>
+              <Link className="btn warning-color mb-5 text-capitalize" to="/">
+                back to recipe list
+              </Link>
               <img src={image_url} alt="recipe" className="d-block w-100" />
             </div>
             {/* details */}
             <div className="col-10 mx-auto col-md-6 my-3">
-              <h6 className="text-uppercase">{title}</h6>
+              <h6 className="text-uppercase font-weight-normal">{title}</h6>
               <h6 className="text-warning text-capitalize text-slanted">
                 provided by {publisher}
               </h6>

@@ -1,13 +1,17 @@
-import React, { Component, Fragment } from "react";
-import Recipe from "./Recipe";
-import RecipeSearch from "./RecipeSearch";
+import React, { Component, Fragment } from 'react';
+import Recipe from './Recipe';
+import RecipeSearch from './RecipeSearch';
 
 class RecipeList extends Component {
   render() {
-    const { recipes } = this.props;
+    const { recipes, handleSearchChange, handleSubmit, search } = this.props;
     return (
       <Fragment>
-        <RecipeSearch />
+        <RecipeSearch
+          handleSearchChange={handleSearchChange}
+          handleSubmit={handleSubmit}
+          search={search}
+        />
         <div className="container my-5">
           {/*title*/}
           <div className="row">

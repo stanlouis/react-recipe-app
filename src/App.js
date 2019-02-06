@@ -6,30 +6,55 @@ import { recipes } from './data/tempList';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 
+const baseUrl = `https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/search?key=${
+  process.env.REACT_APP_F2F_KEY
+}`;
+
 class App extends Component {
   state = {
     recipes: recipes,
+    url: baseUrl,
+    search: '',
+    query: '&q=',
   };
 
-  // getRecipes = async () => {
-  //   const url = `https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/search?key=${
-  //     process.env.REACT_APP_F2F_KEY
-  //   }`;
-  //   try {
-  //
-  //     const data = await fetch(url);
-  //     const jsonData = await data.json();
-  //
-  //     this.setState({
-  //       recipes: jsonData.recipes
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // componentDidMount() {
-  //   // this.getRecipes();
-  // }
+  getRecipes = async () => {
+    const { url } = this.state;
+    try {
+      const data = await fetch(url);
+      const jsonData = await data.json();
+
+      this.setState({
+        recipes: jsonData.recipes,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  componentDidMount() {
+    // this.getRecipes();
+  }
+
+  handleSearchChange = e => {
+    this.setState({
+      search: e.target.value,
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { url, query, search } = this.state;
+    this.setState(
+      {
+        url: `${url}${query}${search}`,
+        search: '',
+      },
+      () => {
+        this.getRecipes();
+        console.log(this.state);
+      }
+    );
+  };
 
   render() {
     return (
@@ -39,13 +64,18 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={props => <RecipeList recipes={this.state.recipes} />}
+              render={props => (
+                <RecipeList
+                  recipes={this.state.recipes}
+                  handleSearchChange={this.handleSearchChange}
+                  handleSubmit={this.handleSubmit}
+                  search={this.state.search}
+                />
+              )}
             />
             <Route path="/:id" component={RecipeDetails} />
           </Switch>
         </Router>
-        {/* <RecipeList recipes={this.state.recipes} />
-        <RecipeDetails id={this.state.details_id} /> */}
       </Fragment>
     );
   }

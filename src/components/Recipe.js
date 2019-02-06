@@ -18,7 +18,7 @@ class Recipe extends Component {
                 <img
                   src={image_url}
                   alt="recipe-pic"
-                  style={{ height: 'auto', width: '100%' }}
+                  style={{ height: '14rem', width: '100%' }}
                   className="img-card-top"
                 />
                 <div className="mask rgba-white-slight" />
@@ -32,9 +32,13 @@ class Recipe extends Component {
               </h6>
             </div>
             <div className="card-footer">
-              <button className="btn btn-light-green text-capitalize">
-                <Link to={`/${recipe_id}`}>details</Link>
-              </button>
+              <Link
+                className="btn btn-light-green text-capitalize"
+                to={`/${recipe_id}`}
+              >
+                details
+              </Link>
+
               <a
                 href={source_url}
                 className="btn btn-dark-green mx-2 text-capitalize"
