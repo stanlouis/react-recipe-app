@@ -9,19 +9,18 @@ class RecipeDetails extends Component {
 
   async componentDidMount() {
     const { id } = this.props.match.params;
-    // const url = `https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/get?key=${
-    //     process.env.REACT_APP_F2F_KEY
-    //   }&rId=${id}`
-    // try {
-    //   const data = await fetch(url);
-    //   const jsonData = await data.json();
-    //   this.setState({
-    //     recipe: jsonData.recipe,
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    console.log(id);
+    const url = `https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/get?key=${
+      process.env.REACT_APP_F2F_KEY
+    }&rId=${id}`;
+    try {
+      const data = await fetch(url);
+      const jsonData = await data.json();
+      this.setState({
+        recipe: jsonData.recipe,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {

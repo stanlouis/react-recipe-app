@@ -16,6 +16,7 @@ class App extends Component {
     url: baseUrl,
     search: '',
     query: '&q=',
+    error: '',
   };
 
   getRecipes = async () => {
@@ -24,15 +25,22 @@ class App extends Component {
       const data = await fetch(url);
       const jsonData = await data.json();
 
-      this.setState({
-        recipes: jsonData.recipes,
-      });
+      if (jsonData.recipes.length === 0) {
+        this.setState(() => ({
+          error: 'Sorry, your search did not return any results',
+        }));
+      } else {
+        this.setState(() => ({
+          recipes: jsonData.recipes,
+          error: '',
+        }));
+      }
     } catch (error) {
       console.log(error);
     }
   };
   componentDidMount() {
-    // this.getRecipes();
+    this.getRecipes();
   }
 
   handleSearchChange = e => {
@@ -50,8 +58,7 @@ class App extends Component {
         search: '',
       },
       () => {
-        // this.getRecipes();
-        console.log(this.state);
+        this.getRecipes();
       }
     );
   };
@@ -70,6 +77,7 @@ class App extends Component {
                   handleSearchChange={this.handleSearchChange}
                   handleSubmit={this.handleSubmit}
                   search={this.state.search}
+                  error={this.state.error}
                 />
               )}
             />

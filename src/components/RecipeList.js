@@ -4,7 +4,13 @@ import RecipeSearch from './RecipeSearch';
 
 class RecipeList extends Component {
   render() {
-    const { recipes, handleSearchChange, handleSubmit, search } = this.props;
+    const {
+      recipes,
+      handleSearchChange,
+      handleSubmit,
+      search,
+      error,
+    } = this.props;
     return (
       <Fragment>
         <RecipeSearch
@@ -21,9 +27,13 @@ class RecipeList extends Component {
           </div>
           {/*end*/}
           <div className="row">
-            {recipes.map(recipe => {
-              return <Recipe key={recipe.recipe_id} recipe={recipe} />;
-            })}
+            {error ? (
+              <h1 className="text-danger text-center">{error}</h1>
+            ) : (
+              recipes.map(recipe => {
+                return <Recipe key={recipe.recipe_id} recipe={recipe} />;
+              })
+            )}
           </div>
         </div>
       </Fragment>
